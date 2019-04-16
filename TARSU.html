@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TARS Unlimited について</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        /* === GENERAL === */
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, Monospace;
+    white-space: pre-wrap;
+}
+
+.pre--multiline {
+    margin-top: 4px;
+    padding: 8px;
+    border: 2px solid;
+    border-radius: 5px;    
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+}
+
+.emoji {
+    width: 24px;
+    height: 24px;
+    margin: 0 1px;
+    vertical-align: middle;
+}
+
+.emoji--small {
+    width: 16px;
+    height: 16px;
+}
+
+.emoji--large {
+    width: 32px;
+    height: 32px;
+}
+
+.mention {
+    font-weight: 600;
+}
+
+/* === INFO === */
+
+.info {
+    display: flex;
+    max-width: 100%;
+    margin: 0 5px 10px 5px;    
+}
+
+.info__guild-icon-container {
+    flex: 0;
+}
+
+.info__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.info__metadata {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.info__guild-name {
+    font-size: 1.4em;
+}
+
+.info__channel-name {
+    font-size: 1.2em;
+}
+
+.info__channel-topic {
+    margin-top: 2px;
+}
+
+.info__channel-message-count {
+    margin-top: 2px;
+}
+
+.info__channel-date-range {
+    margin-top: 2px;
+}
+
+/* === CHATLOG === */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: flex;
+    margin: 0 10px;
+    padding: 15px 0;
+    border-top: 1px solid;
+}
+
+.chatlog__author-avatar-container {
+    flex: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    flex: 1;
+    min-width: 50%;
+    margin-left: 20px;
+}
+
+.chatlog__author-name {
+    font-size: 1em;
+}
+
+.chatlog__timestamp {
+    margin-left: 5px;
+    font-size: .75em;
+}
+
+.chatlog__content {
+    padding-top: 5px;
+    font-size: .9375em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 5px;
+    font-size: .8em;
+}
+
+.chatlog__attachment {
+    margin: 5px 0;
+}
+
+.chatlog__attachment-thumbnail {
+    max-width: 50%;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    max-width: 520px;
+    margin-top: 5px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 4px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 10px;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    width: 100%;
+    display: flex;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.chatlog__embed-author-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 9px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: .875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 4px;
+    font-size: .875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 10px;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 4px;
+    font-size: .875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-size: .875em;
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 20px;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 10px;
+}
+
+.chatlog__embed-image {    
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 10px;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-weight: 600;
+    font-size: .75em;
+}
+
+.chatlog__reactions {
+    display: flex;    
+}
+
+.chatlog__reaction {
+    margin: 6px 2px 2px 2px;
+    padding: 2px 6px 2px 2px;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-emoji {
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+.chatlog__reaction-count {
+    font-size: .875em;
+    vertical-align: middle;
+}
+/* === GENERAL === */
+
+body {
+    background-color: #36393e;
+    color: #ffffffb3;
+}
+
+a {
+    color: #0096cf;
+}
+
+.pre {
+    background-color: #2f3136;
+}
+
+.pre--multiline {
+    border-color: #282b30;
+    color: #839496;
+}
+
+.mention {
+    background-color: #738bd71a;
+    color: #7289da;
+}
+
+/* === INFO === */
+
+.info__guild-name {
+    color: #ffffff;
+}
+
+.info__channel-name {
+    color: #ffffff;
+}
+
+.info__channel-topic {
+    color: #ffffff;
+}
+
+/* === CHATLOG === */
+
+.chatlog__message-group {
+    border-color: #ffffff0a;
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: #ffffff33;
+}
+
+.chatlog__edited-timestamp {
+    color: #ffffff33;
+}
+
+.chatlog__embed-content-container {
+    background-color: #2e30364d;
+    border-color: #2e303699;
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: #ffffff99;
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: #ffffff99;
+}
+
+.chatlog__embed-footer {
+    color: #ffffff99;
+}
+
+.chatlog__reaction {
+    background-color: #ffffff0a;
+}
+
+.chatlog__reaction-count {
+    color: #ffffff4d;
+}
+    </style>
+</head>
+<body>
+    
+<div class="info">
+    <div class="info__guild-icon-container">
+        <img class="info__guild-icon" src="https://cdn.discordapp.com/icons/552969156543250434/43d6dbaa4ca75cdb910c0244c187bfdc.png" />
+    </div>
+    <div class="info__metadata">
+        <div class="info__guild-name">TARS</div>
+        <div class="info__channel-name">TARS Unlimited について</div>
+        
+            <div class="info__channel-topic"></div>
+
+        <div class="info__channel-message-count">20 messages</div>
+        
+    </div>
+</div>
+
+<div class="chatlog">
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/400445533371629569/c6fef24a33f6032d31f21c50879e9ae7.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Tainoko#7777">Tainoko</span>
+                <span class="chatlog__timestamp">19-Apr-14 PM 06:03</span>
+
+                        <div class="chatlog__content">
+                            &#128640;  TARS Unlimited（TARS U）の紹介<br /><br />TARS 通常版にあるシグナル 0～100 という数字制限を撤廃し、さらなるチューニングを施した新作です。<br />APS ライクな機能を持っており、いわゆる『仕込みの検出』に特化しています。
+
+                                <span class="chatlog__edited-timestamp" title="19-Apr-14 PM 10:30">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            🚀
+                                    </span>
+                                    <span class="chatlog__reaction-count">6</span>
+                                </div>
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            😋
+                                    </span>
+                                    <span class="chatlog__reaction-count">3</span>
+                                </div>
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            <img class="emoji emoji--small" title="tainoko" src="https://cdn.discordapp.com/emojis/559076351496159252.png" />
+                                    </span>
+                                    <span class="chatlog__reaction-count">9</span>
+                                </div>
+                        </div>
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/566915121243226133/unknown.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/566915121243226133/unknown.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            🚀
+                                    </span>
+                                    <span class="chatlog__reaction-count">3</span>
+                                </div>
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            <img class="emoji emoji--small" title="tainoko" src="https://cdn.discordapp.com/emojis/559076351496159252.png" />
+                                    </span>
+                                    <span class="chatlog__reaction-count">5</span>
+                                </div>
+                        </div>
+                        <div class="chatlog__content">
+                            &#127775; 特徴
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            ① スーパーフィルター（試験機能）<br />　初期状態で OFF です。<br />　ON にすることで、ノイズを除去した総合的な出来高が溜め込みを見ることができます。<br />　ピンポイントでブレイクを捉えるよりも、パワーを測りたい時に使います。<br />　おすすめの機能なので定期的に ON にするか、常に ON にしてみてほしいです。<br />　※スーパーフィルター有効のときは、アラートは動作しません。<br /><br />③ 主要アルトコインで、合算チャートの参照<br />　初期状態で OFF です。<br />　ADA、BCH、LTC、EOS、TRX、XRP、LTC、BSV、BNB、XMR、XLM、IOTA は、TradingView 上で各取引所のデータを合算したチャートが提供されています。<br />　これらの銘柄（USD 建）のとき、合算チャートを自動的に参照させることができます。<br />　取引所によっての差異がなくなるため、おすすめの設定です。<br /><br />④ 違う時間足を参照<br />　初期状態で OFF です。<br />　反応は上位時間足の方が強いことがあります。<br />　意図的に現在表示している時間足とは違う時間足を表示したい場合に ON にします。<br /><br />⑤ アラート機能<br />　TARS U が総合的に判断し、アラートをレベル１、レベル２に分類し、通知することができます。<br />　※ シグナル数値の上限無制限という仕様上、アラートとして反応しない場合もあります。<br /><br />⑥ 出来高がないチャートで動作<br />　基本は出来高を必要としますが、出来高がない場合は TARS の仕組みを使って推測します。
+
+                                <span class="chatlog__edited-timestamp" title="19-Apr-15 PM 11:14">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            🚀
+                                    </span>
+                                    <span class="chatlog__reaction-count">7</span>
+                                </div>
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            <img class="emoji emoji--small" title="tainoko" src="https://cdn.discordapp.com/emojis/559076351496159252.png" />
+                                    </span>
+                                    <span class="chatlog__reaction-count">6</span>
+                                </div>
+                        </div>
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/400445533371629569/c6fef24a33f6032d31f21c50879e9ae7.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Tainoko#7777">Tainoko</span>
+                <span class="chatlog__timestamp">19-Apr-14 PM 07:04</span>
+
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/566926788857561088/unknown.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/566926788857561088/unknown.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            🚀
+                                    </span>
+                                    <span class="chatlog__reaction-count">6</span>
+                                </div>
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            <img class="emoji emoji--small" title="tainoko" src="https://cdn.discordapp.com/emojis/559076351496159252.png" />
+                                    </span>
+                                    <span class="chatlog__reaction-count">7</span>
+                                </div>
+                        </div>
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/400445533371629569/c6fef24a33f6032d31f21c50879e9ae7.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Tainoko#7777">Tainoko</span>
+                <span class="chatlog__timestamp">19-Apr-15 AM 12:08</span>
+
+                        <div class="chatlog__content">
+                            『スーパーフィルター』＋『アルトコインは合算チャートを参照する』の ☑ は、パワーの大きさを測る上では通常のモードよりもおすすめです。<br />是非試してみてほしいです。
+
+                                <span class="chatlog__edited-timestamp" title="19-Apr-15 AM 01:35">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/567003269411635202/VUwCCssi.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/567003269411635202/VUwCCssi.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/567003323350253606/8C8c2Rya.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/567003323350253606/8C8c2Rya.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            💯
+                                    </span>
+                                    <span class="chatlog__reaction-count">4</span>
+                                </div>
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            <img class="emoji emoji--small" title="tainoko" src="https://cdn.discordapp.com/emojis/559076351496159252.png" />
+                                    </span>
+                                    <span class="chatlog__reaction-count">3</span>
+                                </div>
+                        </div>
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/567004495020556289/Joi6xaUb.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/567004495020556289/Joi6xaUb.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            <img class="emoji emoji--small" title="tainoko" src="https://cdn.discordapp.com/emojis/559076351496159252.png" />
+                                    </span>
+                                    <span class="chatlog__reaction-count">2</span>
+                                </div>
+                        </div>
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/400445533371629569/c6fef24a33f6032d31f21c50879e9ae7.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Tainoko#7777">Tainoko</span>
+                <span class="chatlog__timestamp">19-Apr-15 AM 01:33</span>
+
+                        <div class="chatlog__content">
+                            複雑になりがちなので、先物関連の設定を削除しました。<br />それに伴い設定解説を更新しました。
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/567024780566331437/unknown.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/567024780566331437/unknown.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/567024811679940628/2019-04-15_01h11_04_2.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/567024811679940628/2019-04-15_01h11_04_2.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            <img class="emoji emoji--small" title="tainoko" src="https://cdn.discordapp.com/emojis/559076351496159252.png" />
+                                    </span>
+                                    <span class="chatlog__reaction-count">1</span>
+                                </div>
+                        </div>
+                        <div class="chatlog__content">
+                            現在の最新版は『TARS U ver. 2a』です。
+
+                        </div>
+
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            👍
+                                    </span>
+                                    <span class="chatlog__reaction-count">2</span>
+                                </div>
+                        </div>
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/400445533371629569/c6fef24a33f6032d31f21c50879e9ae7.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Tainoko#7777">Tainoko</span>
+                <span class="chatlog__timestamp">19-Apr-15 AM 02:26</span>
+
+                        <div class="chatlog__content">
+                            パンプ監視例です。<br /><br />上段、通常モード<br />下段、『スーパーフィルター』＋『アルトコインは総合チャートを参照する』<br /><br />上下段共に反応した場合は大きいのが来そうだなと予測します。<br />方向性は BTC 高騰後のヨコヨコであればアルト祭りと見てロングしたりします。（そのときどきですが）
+
+                        </div>
+
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            ☺
+                                    </span>
+                                    <span class="chatlog__reaction-count">6</span>
+                                </div>
+                        </div>
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/567038040909021205/unknown.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/567038040909021205/unknown.png" />
+                            </a>
+                        </div>
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/400445533371629569/c6fef24a33f6032d31f21c50879e9ae7.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Tainoko#7777">Tainoko</span>
+                <span class="chatlog__timestamp">19-Apr-15 PM 10:49</span>
+
+                        <div class="chatlog__content">
+                            TARS、TARS U 共に、チャート上に重ねて表示される方へ。<br />スケール表示が左側に出てきて邪魔なので消す方法。<br /><br />① チャート上に重ねたインジの　↓　ボタンをクリック。
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/567345837395542016/unknown.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/567345837395542016/unknown.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__content">
+                            「スケールに固定」→「スケールなし」を選択
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/567346006899818517/unknown.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/567346006899818517/unknown.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__content">
+                            
+
+                        </div>
+
+                        <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/566910652334211082/567346276580982869/unknown.png">
+                                
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/566910652334211082/567346276580982869/unknown.png" />
+                            </a>
+                        </div>
+
+
+                        <div class="chatlog__reactions">
+                                <div class="chatlog__reaction">
+                                    <span class="chatlog__reaction-emoji">
+                                            <img class="emoji emoji--small" title="tainoko" src="https://cdn.discordapp.com/emojis/559076351496159252.png" />
+                                    </span>
+                                    <span class="chatlog__reaction-count">6</span>
+                                </div>
+                        </div>
+            </div>
+        </div>
+</div>
+
+</body>
+</html>
